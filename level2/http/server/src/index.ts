@@ -1,5 +1,6 @@
 // const https = require('node:https')
 import {createServer} from 'http';
+import type {AddressInfo} from "node:net";
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -18,7 +19,13 @@ const server = createServer((
         })
 
         request.on('end', () => {
-            console.log(body)
+            // const addressObj = request.socket.localAddress as AddressInfo | {
+            //     address?: string,
+            //     port?: number
+            // }
+            console.log("message:", body)
+            console.log("date:", new Date().toUTCString())
+            console.log("ip:", request.socket.remoteAddress)
             response.end(body)
         })
     } else {
