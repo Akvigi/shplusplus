@@ -27,7 +27,9 @@ socket.on('message', (msg) => {
         askServer()
     } else {
         rl.close()
-        socket.close()
+        socket.send(Buffer.from('Client closed connection'), portTarget, hostname, () => {
+            socket.close()
+        })
     }
 })
 
@@ -41,13 +43,6 @@ const askServer = () => {
                 console.log("Successful sent!")
             }
         })
-
-        // if (value !== 'exit') {
-        //     askServer()
-        // } else {
-        //     rl.close()
-        //     socket.close()
-        // }
     })
 }
 

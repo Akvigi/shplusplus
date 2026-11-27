@@ -19,14 +19,13 @@ const server = createServer((
         })
 
         request.on('end', () => {
-            // const addressObj = request.socket.localAddress as AddressInfo | {
-            //     address?: string,
-            //     port?: number
-            // }
             console.log("message:", body)
             console.log("date:", new Date().toUTCString())
             console.log("ip:", request.socket.remoteAddress)
             response.end(body)
+        })
+        request.socket.on('close', () => {
+            console.log("connection closed")
         })
     } else {
         response.end('Hello world!')

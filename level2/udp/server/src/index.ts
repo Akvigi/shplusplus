@@ -11,4 +11,8 @@ socket.on('message', (msg, info) => {
     console.log("ip:", info.address+":"+info.port)
 })
 
+socket.on('close', () => {
+    console.log('connection closed')
+})
+
 socket.bind(port)
