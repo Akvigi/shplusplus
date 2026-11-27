@@ -12,7 +12,7 @@ socket.on('message', (msg, info) => {
 })
 
 socket.on('close', () => {
-    console.log('connection closed')
+    console.log('server connection closed')
 })
 
 socket.bind(port)
